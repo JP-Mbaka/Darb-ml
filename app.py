@@ -24,6 +24,12 @@ except Exception as e:
 def index():
     return {'message': 'Hello, welcome to Darb-API'}
 
+@app.head("/items/{item_id}")
+async def get_item_headers(item_id: int):
+    # Do whatever processing you need for HEAD requests
+    # In this example, we're just returning an empty response
+    return {}
+
 @app.post('/predict')
 def predict_diabetes(data:Darb):
     data = data.dict()
