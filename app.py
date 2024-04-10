@@ -11,8 +11,14 @@ import pickle
 import pandas as pd
 
 app = FastAPI()
-pickle_in = open("random_model.pkl","rb")
-classifier = pickle.load(pickle_in)
+model_file_path = "random_model.pkl"
+# pickle_in = open("random_model.pkl","rb")
+# classifier = pickle.load(pickle_in)
+try:
+    with open(model_file_path, "rb") as pickle_file:
+        classifier = pickle.load(pickle_file)
+except Exception as e:
+    print("Error loading pickled object:", e)
 
 @app.get('/')
 def index():
