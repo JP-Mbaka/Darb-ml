@@ -7,18 +7,19 @@ import uvicorn
 from fastapi import FastAPI
 from Darb import Darb
 import numpy as np
-import pickle 
+import joblib
 import pandas as pd
 
 app = FastAPI()
-model_file_path = "random_model.pkl"
+model = joblib.load("random_model.joblib")
+# model_file_path = "random_model.pkl"
 # pickle_in = open("random_model.pkl","rb")
-# classifier = pickle.load(pickle_in)
-try:
-    with open(model_file_path, "rb") as pickle_file:
-        classifier = pickle.load(pickle_file)
-except Exception as e:
-    print("Error loading pickled object:", e)
+# # classifier = pickle.load(pickle_in)
+# try:
+#     with open(model_file_path, "rb") as pickle_file:
+#         classifier = pickle.load(pickle_file)
+# except Exception as e:
+#     print("Error loading pickled object:", e)
 
 @app.get('/')
 def index():
@@ -42,7 +43,7 @@ def predict_diabetes(data:Darb):
     pedi = data['pedi']
     age = data['age']
 
-    prediction = classifier.predict([[preg,plas,pres,skin,insu,mass,pedi,age]])
+    prediction = model.predict([[preg,plas,pres,skin,insu,mass,pedi,age]])
     return{
         'prediction': str(prediction)
     }
