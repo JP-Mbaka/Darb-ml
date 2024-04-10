@@ -17,7 +17,7 @@ model_file_path = "random_model-1.pkl"
 # classifier = pickle.load(pickle_in)
 try:
     with open(model_file_path, "rb") as pickle_file:
-        classifier = pickle.load(pickle_file)
+        classifier = pickle.load(pickle_file,dtype='float64')
 except Exception as e:
     print("Error loading pickled object:", e)
 
