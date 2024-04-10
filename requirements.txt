@@ -2,7 +2,6 @@ numpy
 scipy
 scikit-learn
 matplotlib
-pickle
 pandas
 fastapi
 uvicorn
