@@ -11,7 +11,7 @@ import pickle
 import pandas as pd
 
 app = FastAPI()
-model = joblib.load("random_mod.joblib")
+# model = joblib.load("random_mod.joblib")
 model_file_path = "random_model.pkl"
 pickle_in = open("random_model-1.pkl","rb")
 # classifier = pickle.load(pickle_in)
